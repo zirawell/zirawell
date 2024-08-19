@@ -1,19 +1,31 @@
 name: Metrics
 on:
-  # Schedule daily updates
+  # 🌏 Think about the planet! No need to update stats too frequently
   schedule: [{cron: "0 0 * * *"}]
-  # (optional) Run workflow manually
+  # 💡 The following line lets you run workflow manually from the action tab!
   workflow_dispatch:
   # (optional) Run workflow when pushing on master/main
   push: {branches: ["master", "main"]}
 jobs:
-  github-metrics:
+  metrics:
     runs-on: ubuntu-latest
     environment: 
       name: PRD
     permissions:
       contents: write
     steps:
-      - uses: zirawell/metrics@master
+      - name: General
+        if: ${{ success() || failure() }}
+        uses: zirawell/metrics@master
         with:
           token: ${{ secrets.METRICS_TOKEN }}
+          base: header, repositories
+          plugin_lines: yes
+      - name: Half-year calendar
+        if: ${{ success() || failure() }}
+        uses: zirawell/metrics@master
+        with:
+          filename: metrics.plugin.isocalendar.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          plugin_isocalendar: yes
