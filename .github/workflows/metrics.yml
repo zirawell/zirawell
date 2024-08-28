@@ -18,7 +18,7 @@ jobs:
         if: ${{ success() || failure() }}
         uses: zirawell/metrics@master
         with:
-          filename: metrics/github-metrics.svg
+          filename: .metrics/github-metrics.svg
           token: ${{ secrets.METRICS_TOKEN }}
           base: header, repositories
           plugin_lines: yes
@@ -26,7 +26,7 @@ jobs:
         if: ${{ success() || failure() }}
         uses: zirawell/metrics@master
         with:
-          filename: metrics/metrics.plugin.isocalendar.svg
+          filename: .metrics/metrics.plugin.isocalendar.svg
           token: ${{ secrets.METRICS_TOKEN }}
           base: ""
           plugin_isocalendar: yes
@@ -34,7 +34,7 @@ jobs:
         if: ${{ success() || failure() }}
         uses: zirawell/metrics@master
         with:
-          filename: metrics/metrics.plugin.fortune.svg
+          filename: .metrics/metrics.plugin.fortune.svg
           token: NOT_NEEDED
           base: ""
           plugin_fortune: yes
