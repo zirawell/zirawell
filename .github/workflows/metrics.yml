@@ -30,11 +30,3 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
           base: ""
           plugin_isocalendar: yes
-      - name: Fortune
-        if: ${{ success() || failure() }}
-        uses: zirawell/metrics@master
-        with:
-          filename: .metrics/metrics.plugin.fortune.svg
-          token: NOT_NEEDED
-          base: ""
-          plugin_fortune: yes
